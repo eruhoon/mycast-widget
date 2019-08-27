@@ -5,6 +5,7 @@
     ],
     "jsRules": {},
     "rules": {
+        "arrow-parens": false,
         "member-ordering": {
             "options": {
                 "order": [
@@ -17,6 +18,7 @@
                 ]
             }
         },
+        "object-literal-sort-keys": false,
         "no-console": true,
         "quotemark": false
     },

@@ -31,11 +31,13 @@ export class AppManager {
     }
 
     private createWindow() {
-        this.mWin = new BrowserWindow({
+        const win = new BrowserWindow({
+            center: false,
             height: 600,
             webPreferences: { nodeIntegration: true },
             width: 800,
         });
-        this.mWin.loadFile('assets/vega_widget.html');
+        win.loadFile('assets/vega_widget.html');
+        this.mWin = win;
     }
 }
