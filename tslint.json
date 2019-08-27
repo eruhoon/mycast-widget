@@ -1,0 +1,17 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "member-ordering": {
+            "options": {
+                "order": "statics-first"
+            }
+        },
+        "no-console": true,
+        "quotemark": false
+    },
+    "rulesDirectory": []
+}
