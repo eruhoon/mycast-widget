@@ -7,7 +7,14 @@
     "rules": {
         "member-ordering": {
             "options": {
-                "order": "statics-first"
+                "order": [
+                    "static-field",
+                    "instance-field",
+                    "public-static-method",
+                    "constructor",
+                    "instance-method",
+                    "private-static-method"
+                ]
             }
         },
         "no-console": true,
