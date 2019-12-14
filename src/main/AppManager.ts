@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Tray } from 'electron';
+import { app, BrowserWindow, Notification, Tray } from 'electron';
 
 import { VegaTray } from './view/tray/VegaTray';
 
@@ -20,9 +20,31 @@ export class AppManager {
         this.mWin = null;
         this.mTray = null;
 
+        const lock = app.requestSingleInstanceLock();
+        if (!lock) {
+            app.quit();
+            return;
+        }
+        app.on('second-instance', (event, cmdLine, workingDir) => {
+            if (this.mWin) {
+                if (this.mWin.isMinimized()) {
+                    this.mWin.restore();
+                }
+                this.mWin.focus();
+            }
+        });
         app.on('ready', () => {
             this.onReady();
             this.mTray = new VegaTray();
+
+            let noti = new Notification({
+                title: '알림 테스트',
+                body: '알려라!!'
+            });
+            noti.on('click', () => {
+                console.log(111);
+            });
+            noti.show();
         });
     }
 
@@ -37,7 +59,9 @@ export class AppManager {
             webPreferences: { nodeIntegration: true },
             width: 800,
         });
-        win.loadFile('assets/vega_widget.html');
+        win.webContents.openDevTools();
+        //win.loadFile('assets/vega_widget.html');
+        win.loadURL('http://mycast.xyz/');
         this.mWin = win;
     }
 }
